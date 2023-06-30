@@ -8,9 +8,15 @@ import { fileURLToPath } from "url";
 import sendMockEmail from "./js/email/sendMockEmail.js";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+import handlebars from "handlebars";
+import filterEventsHelper from './js/helpers/filterEventsHelper.js';
+
 const PORT = 3000;
 const app = express();
 const hbs = create({});
+
+handlebars.registerHelper("filterEvents", filterEventsHelper);
+
 app.use(express.json());
 
 app.engine("handlebars", hbs.engine);
